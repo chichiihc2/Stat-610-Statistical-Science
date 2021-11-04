@@ -1,0 +1,92 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} 
+
+%-------------------------------------%
+\begin{document}
+	
+	\begin{center}
+		{\large \bf STAT 610: Discussion 12}
+	\end{center}
+	\vspace{0.22cm}
+%-------------------------------------%
+----------------------------------%
+
+
+  \section{Summary}
+  \begin{itemize}
+  	\item Types of convergence
+  	\begin{itemize}
+  		\item Converge almost surely: $\mathbf X_n \xrightarrow{a.s.} \mathbf X.$
+  		\item Converge in probability: $\mathbf X_n \xrightarrow{p} \mathbf X.$
+  		\item Converge in distribution (weak convergence): $\mathbf X_n \xrightarrow{d} \mathbf X.$
+  	\end{itemize}
+  	\item (\textbf{Continuous mapping theorem}) Let $\mathbf X_1$, $\mathbf X_2$,... be random $k$-vectors and $g$ be measurable and continuous function from $\mathbb R^k$ to $\mathbb R^l$. Then $\mathbf X_n \rightarrow \mathbf X$ (a.s. / in prob. / in dist.) implies $g(\mathbf X_n) \rightarrow g(\mathbf X)$ (a.s. / in prob. / in dist.). 
+  	\item (\textbf{Slutsky's theorem}) Suppose $X_n \xrightarrow{d} X$ and $Y_n \xrightarrow{p} c$ for a constant c, then 
+  	
+  	\begin{itemize}
+  		\item $X_n+Y_n \xrightarrow{d} X+c$,
+  		\item $X_nY_n \xrightarrow{d} cX$,
+  		\item $\frac{X_n}{Y_n} \xrightarrow{d} \frac{X}{c}$ if $c \neq 0$.
+  	\end{itemize}
+  	\item (\textbf{First order delta method}) If $\sqrt{n}(X_n-\theta) \xrightarrow{d} \N(0,\sigma^2)$ and $g$ is a function satisfying that $g'(\theta)$ exists and is not 0, then
+  	\begin{align*}
+  	\sqrt{n}(g(X_n)-g(\theta)) \xrightarrow{d} \N(0,\sigma^2[g'(\theta)]^2)
+  	\end{align*}
+  	\item Consistency: A sequence of estimators $T_n$ is consistent w.r.t $\theta$ if $T_n\xrightarrow{p}\theta$. 
+  	\item (\textbf{Consistency of MLEs}) Let $X_1,\ldots,X_n\overset{i.i.d}{\sim}f_\theta(x)$. Let $\hat\theta_n$ denote the MLE of $\theta$. Under certain regularity conditions, $\hat\theta_n$ is a consistent estimator of $\theta_n$.
+  	\item Suppose that $k_n(T_n - \theta)\xrightarrow{d}\mathcal N(0,\sigma^2)$. Then $\sigma^2$ is called the \textit{asymptotic variance} of $T_n$.
+  	\item A sequence $T_n$ is \textit{asymptotic efficient} for $\tau(\theta)$ if $\sqrt{n}\{T_n - \tau(\theta)\}\xrightarrow{d}\mathcal N(0, \nu(\theta))$, where
+  	$$\nu(\theta) = \dfrac{\{\tau'(\theta)^2\}}{\E\left[\left\{\frac{\partial}{\partial\theta}\log f_\theta(X)\right\}^2\right]}.$$
+  	\item Under regularity conditions, MLEs are asymptotic efficient.
+  	\item Suppose $\sqrt{n}(T_n - \theta)\xrightarrow{d}\mathcal(0, \sigma_T^2)$ and $\sqrt{n}(W_n - \theta)\xrightarrow{d}\mathcal(0, \sigma_W^2)$. The \textit{asymptotic relative efficiency} (ARE) of $W_n$ w.r.t. $T_n$ is 
+  	$\text{ARE}(W_n, T_n) = {\sigma_T^2}/{\sigma_W^2}$
+  \end{itemize}
+  
+  \section{Questions}
+  
+  \begin{enumerate}
+  	\item A random sample $X_1,\ldots,X_n$ is drawn from the following pdf
+  	$$f_\theta(x) = \dfrac{1}{2}(1+\theta x), \hskip .4cm -1<x<1, \hskip .4cm -1<\theta<1.$$
+  	Find a consistent estimator of $\theta$ and show it is consistent.
+  	\vskip 4cm
+  	\item Let $X_1,\ldots,X_n$ be a random sample of random variables with unknown mean $\mu\in\mathbb R$ and unknown variance $\sigma^2 > 0$ and $\E (X^4)<\infty$. Consider the estimation of $\mu^2$ and the following three estimators:
+  	\begin{itemize}
+  		\item[$-$] $T_{1n} = \bar{X}^2$,
+  		\item[$-$] $T_{2n} = \bar{X}^2 - S^2/n$,
+  		\item[$-$] $T_{3n} = \max\{0, T_{2n}\}$.  
+  	\end{itemize}
+  	\begin{enumerate}
+  		\item Show that the asymptotic variance of $T_{jn}, j = 1,2,3,$ are the same when $\mu \neq 0$.
+  	    \item Find the asymptotic distribution when $\mu \neq 0$.
+  	       \item Find the asymptotic distribution when $\mu = 0$.
+  	       \item Which one is better?
+  	\end{enumerate}
+  	\vskip 4cm
+  	\item Let $X_1,\ldots,X_n$ be a random sample from $\mathcal N(0,\sigma^2)$. Consider the estimation of $\sigma$. Consider these two estimates  $T_{1n} = \sqrt{\pi/2}\sum_{i=1}^n |X_i|/n$ and $T_{2n} = (\sum_{i=1}^nX_i^2/n)^{1/2}$.
+  	
+  
+  	\begin{enumerate}
+  		\item Find the asymptotic distributions of $T_{1n}$ and $T_{2n}$.
+  		\item Which one is better? 
+  	\end{enumerate}
+  	\textit{Hint: You can use the fact that $\E(\sqrt{\pi/2}|X_1|) = \sigma$ and $\text{Var}(\sqrt{\pi/2}|X_1|) = (\frac{\pi}{2} - 1)\sigma^2$}
+  
+  \end{enumerate}
+%-------------------------------------%
+\end{document}

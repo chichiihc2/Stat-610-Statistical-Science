@@ -1,0 +1,73 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+	
+	\begin{center}
+		{\large \bf STAT 610: Discussion 6}
+	\end{center}
+	\vspace{0.22cm}
+	
+	%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item Under assumption (A3), $\hat\beta=\hat \beta_{V^{-1}}$, if and only if 
+	$X (X^\top X)^{-1}X^\top Var(\epsilon)$ is symmetric,
+	where $\beta_{V^{-1}}$ is the solution of WLSE.
+	
+	
+	\item Notations and propoties for GLM.
+	\begin{itemize}
+		\item Y have pdf
+		$$\exp\left\{\frac{\eta_iy_i-\zeta(\eta_i)}{\phi}\right\}h(y_i,\phi).$$
+		\item 
+		$E[Y_i]=\zeta'(\eta_i)=\mu(\eta_i)$ and $Var(Y_i)=\phi\zeta''(\eta_i)$
+		\item $g$ is the link function. And $g\circ \mu(\eta_i)=\beta^\top x_i.$
+		\item Canonical link: $g=\mu^{-1}.$
+		\item $\psi=(g\circ\mu)^{-1}$; hence $\eta_i=\psi(\beta^\top x_i). $
+	\end{itemize}
+\end{itemize}
+\section{Questions}
+\begin{enumerate}
+\item A linear model with $\beta$ replaced by a random vector $\bm{\beta}$ that is independent of $\epsilon$. Suppose that $Var(\epsilon)=\sigma^2 \bm{I}_n$, and $E[\bm{\beta}]=\beta$. Show that $\ell^\top \hat{\beta}$ is the BLUE for $\ell^\top \beta$.
+\vspace{3 cm}
+\item Under (A3) and $X$ is full rank. Them, $\hat\beta=\hat \beta_{V^{-1}}$  if and only if $\ell^\top\hat\beta$ is BLUE for all $\ell.$
+
+\vspace{3 cm}
+
+\item Assume that $\bm{\epsilon}\sim N(0, V)$, and $X$ is full rank. Then,
+	$X (X^\top X)^{-1}X^\top Var(\epsilon)$ is symmetric
+	if and only if $\hat\beta$ is the UMVUE for all $\ell.$
+
+\vspace{3 cm}
+\item Let $Y_1,\dots,Y_n$ be independent Poisson random variables with 
+$$Y_i\sim \frac{1}{y_i!}\exp(\eta_i y_i-e^{\eta_i})\bm{I}(y_i=0,1,\dots),\quad i=1,\dots,n,$$
+where $g(e^{\eta_i})=\beta^\top x_i$, $g$ is a link function, $x_i$'s are p-dimensional covariates, and $\beta$ is a p-dimensional unknown parmeter vector. Consider a GLM for $Y_1,\dots,Y_n$ and $X_1,\dots,x_n.$
+\begin{enumerate}
+	\item With link function $g(t)=\log t,$ obtain the likelihood equation for MLE of $\beta$ and show that the matrix of second order dereivative of the log likelihood function is 
+	$$-\sum_{i=1}^{n}e^{\beta'x_i}x_ix_i^\top.$$
+	\item Consider link $g(t)=2\sqrt{t}.$ Show that $\mu^{-1}(s)=\log s$ and $\psi(t)=\mu^{-1}\circ g^{-1}(t)=2\log(t/2)$. Obtian the likelihood equation for the MLE of $\beta.$
+\end{enumerate}
+
+
+
+\end{enumerate}
+	%-------------------------------------%
+\end{document}

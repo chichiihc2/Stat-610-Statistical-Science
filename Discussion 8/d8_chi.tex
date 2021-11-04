@@ -1,0 +1,81 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 5}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item Hypothesis test: after observing samples $\mathbf X\sim \mathbb P_\theta$, decide either to retain $H_0: \theta\in\Theta_0$ (null hypothesis) or to reject $H_0$ and conclude $H_1: \theta\in\Theta_0^c$ (alternative hypothesis) is true.
+    \item Basic definitions: 
+    \begin{itemize}
+        \item Type I error: reject $H_0$ if $H_0$ is true.
+        \item Type II error: retain $H_0$ if $H_0$ is false.
+        \item Let $R$ denote the rejection region for a test. Then 
+        $$\beta(\theta) = \mathbb P_\theta(\mathbf X\in R) = \begin{cases}
+            \mathbb P(\text{Type I error}) & \text{if }\theta\in\Theta_0\\
+            1 - \mathbb P(\text{Type II error}) &  \text{if }\theta\in\Theta_0^c
+        \end{cases}$$
+        is called the power function.
+        \item A test with power function $\beta(\theta)$ is a size (level) $\alpha$ test if $\sup_{\theta\in\Theta_0}\beta(\theta) = \alpha$ $(\leq\alpha)$.
+    \end{itemize}
+    \item The likelihood ratio test statistic for $H_0: \theta\in\Theta_0$ v.s. $H_1: \theta\in\Theta_0^c$ is
+        $$\lambda(\x) = \dfrac{\sup_{\theta\in\Theta_0}L(\theta\mid\x)}{\sup_{\theta\in\Theta}L(\theta\mid\x)}.$$
+        A \textit{likelihood ratio test} (LRT) is any test with rejection region $\{\x: \lambda(\x)\leq c\}$, where $0\leq c\leq 1$. Normally, we choose $c$ such that the test $$T(\mathbf X) = \begin{cases}
+            1 & \text{if }\lambda(\X)\leq c\\
+            0 & \text{if }\lambda(\X) > c
+        \end{cases}$$ has size $\alpha$, that is, $\sup_{\theta\in\Theta_0}\beta(\theta) = \sup_{\theta\in\Theta_0}\mathbb P_\theta(\lambda(\X)\leq c) = \alpha$.
+    \item \textbf{Theorem 8.2.4.} If $W(\mathbf X)$ is a sufficient statistic for $\theta$ and $\lambda^*(w)$ and $\lambda(\x)$ are the LRT statistic based on $W$ and $\mathbf X$, then $\lambda^*(W(\x)) = \lambda(\x)$.
+    \item  A test $T^*$ of size $\alpha$ is a \textit{uniformly most powerful} (UMP) test if and only if $\beta_{T^*}(\theta) \geq \beta_T(\theta)$ for all $\theta \in \Theta_0^c$ and $T$ of level $\alpha$.
+    \item \textbf{Theorem 8.3.12. (Neyman-Pearson Lemma)} Consider $H_0: \theta = \theta_0$ v.s. $H_1: \theta = \theta_1$, then
+        $$T^*(\X) = \begin{cases}
+            1 & f(\X\mid\theta_1) > cf(\X\mid\theta_0)\\
+              0 & f(\X\mid\theta_1) < cf(\X\mid\theta_0)
+        \end{cases},\hspace{1ex}$$ is a UMP test of size $\alpha_c:=E(T^*|\theta_0)$.
+        Note that $f(\X\mid\theta_1) = cf(\X\mid\theta_0) $ can be arbitraty.
+\end{itemize}
+
+
+\section{Questions}
+ 
+\begin{enumerate}
+	\item Suppose that we observe $m$ i.i.d Ber($\theta$) random variables, denoted by $Y_1,\ldots, Y_m$. Show that the LRT of $H_0:\theta\leq\theta_0$ v.s. $H_1:\theta>\theta_0$ will reject $H_0$ if $\sum_{i=1}^mY_i > b$.
+    \vspace{3.5cm}
+    \item A random sample $X_1, \ldots, X_n$ is drawn from a Pareto distribution with pdf
+        $$f(x\mid \theta,\nu) = \dfrac{\theta\nu^\theta}{x^{\theta+1}}I_{[\nu, \infty)}(x), \hspace{1ex} \theta > 0, \vspace{1ex} \nu >0.$$
+        \begin{enumerate}
+            \item Find the MLEs of $\theta$ and $\nu$.
+            \item Show that the LRT of $$H_0:\theta=1, \hspace{1ex}\text{ v.s. }\hspace{1ex}  H_1:\theta\neq 1, \hspace{1ex}\nu \text{ unknown},$$ has reject region of the form $\{\x:T(\x)\leq c_1\text{ or }T(\x)\geq c_2\}$, where $0<c_1<c_2$ and $$T = \text{log}\Big[\dfrac{\prod_{i=1}^nX_i}{X_{(1)}^n}\Big].$$
+        \end{enumerate}
+    \vspace{4cm}
+	\item Suppose $X$ is one observation from a population with distribution Beta($\theta,1$).
+	\begin{enumerate}
+        \item For testing $H_0:\theta\leq 1$ v.s. $H_1:\theta>1$, find the size and the power function of the test that rejects $H_0$ if $X>0.5$.
+        \item Find the most powerful level $\alpha$ test of $H_0:\theta= 1$ v.s. $H_1:\theta=2$.
+    \end{enumerate} 
+\end{enumerate}
+%-------------------------------------%
+\end{document}

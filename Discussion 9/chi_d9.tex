@@ -1,0 +1,93 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} 
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 9}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+    \item UMP test for one sided hypothesis:
+	\begin{itemize}
+		\item Monotone likelihood ratio (MLR): $f_\theta(x)$ is MLR in $Y(X)$ if for any $\theta_1<\theta_2$, $\frac{f_{\theta_2}(x)}{f_{\theta_1}(x)}$ is monotone of $Y(x)$ for values of $x$ at which at least one of $f_{\theta_1}(x)$ and $f_{\theta_2}(x)$ is positive.
+		
+		\item \textbf{Karlin-Rubin Theorem}: $H_0: \theta \leq \theta_0$ v.s. $H_1: \theta>\theta_0$. $f_\theta(x)$ has non-decreasing MLR of $Y(X)$. Then
+		\begin{align*}
+		T(X) = \begin{cases}
+		1\text{, if } Y(X)>c \\
+		0\text{, if } Y(X)<c
+		\end{cases},
+		\end{align*}
+		is a level-$\alpha$ UMP test.
+	\end{itemize}
+	\item UMPU test for one parameter exp-family:
+    \begin{itemize}
+        \item Unbiased test: A test with power function $\beta(\theta)$ is \textit{unbiased} if $\beta(\theta')\geq\beta(\theta'')$ for every $\theta\in\Theta_0^c$ and $\theta''\in\Theta_0$.
+        \item Suppose that $U$ is a sufficient statistic for $\theta\in\mathbb R$ with pdf or pmf $g_\theta(u) = h(u)c(\theta)e^{w(\theta)u}$.
+		Consider $H_0: \theta = \theta_0$ v.s. $H_1: \theta\neq\theta_0$. A UMPU test of size $\alpha$ satisfies 
+		\begin{align*}
+			T(X) = \begin{cases}
+			1\text{, if } U(X) < c_1 \text{ or } U(X) > c_2 \\
+			0\text{, if } c_1 < U(X) < c_2
+			\end{cases}
+			\end{align*}
+		for some constants $c_1$ and $c_2$ such that $\E_{\theta_0}(T) = \alpha$ and $\E_{\theta_0}(TU) = \alpha\E_{\theta_0}(U)$.
+    \end{itemize}
+    \item p-value:
+    \begin{itemize}
+	\item Valid p-value: For every $\theta \in \Theta_0$ and every $0\leq\alpha\leq 1$, 
+	\begin{align*}
+	\p_\theta(p(X)\leq\alpha)\leq\alpha.
+	\end{align*}
+	\item Commonly used p-value: If large value of $W(X)$ gives evidence that $H_1$ is true, then
+	\begin{align*}
+	p(x)=\underset{\theta\in\Theta_0}{sup}\p_\theta(W(X)\geq W(x))
+	\end{align*}
+	is a valid p-value.
+	\item Another way to define p-value: The smallest possible level $\alpha$ at which $H_0$ would be rejected for the computed level $\alpha$ test $T_\alpha(x)$, i.e.,
+	$$p(x) = \inf \{\alpha\in (0, 1): T_\alpha(x) \text{ rejects } H_0\}.$$
+    \end{itemize}
+\end{itemize}
+
+\section{Questions}
+ 
+\begin{enumerate}
+    \item The random variable $X$ has pdf $f(x)=e^{-x}, x>0$. One observation is obtained on the random variable $Y=X^\theta$. Construct a UMP test of size $\alpha$ for $H_0: \theta=1$ versus $H_1: \theta=2$.
+	
+	\vspace{4cm}
+	\item Consider the following distribution
+$$f(x|\theta) = \frac{e^{x-\theta}}{(1+e^{x-\theta})^2},\quad -\infty<x<\infty, \quad -\infty < \theta<\infty.$$
+\begin{enumerate}
+	\item Show that this family has an MLR.
+	\item Find the UMP test of size $\alpha$ for $H_0: \theta\leq 0$ versus $H_1: \theta >0$.  base on one observation $X$. 
+
+\end{enumerate}
+	\vspace{4cm}
+	\item Let $X_1,\ldots, X_n$ and $Y_1,\ldots, Y_n$ be i.i.d. samples from $\mathcal N(\mu_1, 1)$ and $\mathcal N(\mu_2, 1)$. Find a UMPU test of size $\alpha$ for the hypothesis $H_0: \mu_1 = \mu_2$ and $H_1: \mu_1 \neq \mu_2$.
+	\vspace{4cm}
+	\item Prove that $p(x) = \inf \{\alpha\in (0, 1): T_\alpha(x) \text{ rejects } H_0\}$ is a valid p-value.
+\end{enumerate}
+%-------------------------------------%
+\end{document}

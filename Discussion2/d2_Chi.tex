@@ -1,0 +1,97 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 2}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+		\item Minimal sufficient statistics
+	\begin{itemize}
+		\item Definition: A statistic $T(\X)$ is minimal sufficient if for any other sufficient statistics $T'(\X)$, $T(\mathbf x)$ is a function of $T'(\mathbf x)$.
+		\item Theorem 6.2.13. $T(\mathbf{X})$ is minimal sufficient for $\bm\theta$ if $T$ has the property that 
+		\begin{align*}
+		T(\mathbf{x})=T(\mathbf{y}) \Leftrightarrow \frac{f(\mathbf{x}|\bm\theta)}{f(\mathbf{y}|\bm\theta)} \text{  does not depend on } \bm\theta.
+		\end{align*} 
+		\item Theorem 6.6.5. See lecture 3.
+	\end{itemize}
+	
+	\item In the case of exponential families
+	
+	Let $X_1,\ldots,X_n$ be i.i.d. from an exponential family with pdf $$f_{\bm\theta}(x) = h(x)c(\bm\theta)\exp \{\bm\eta(\bm\theta)^T\mathbf T(x) \},$$where $\bm\eta(\bm\theta)^T = (w_1(\bm\theta),\ldots,w_k(\bm\theta))$, and $\mathbf T(x)^T = (t_1(x),\ldots,t_k(x))$. Then,
+	\begin{itemize}
+		\item $T(\X) = \left(\sum_{i=1}^{n}t_1(X_i),\ldots, \sum_{i=1}^{n}t_k(X_i)\right)$ is a sufficient statistic for $\bm\theta$.
+		\item $T(\X) = \left(\sum_{i=1}^{n}t_1(X_i),\ldots, \sum_{i=1}^{n}t_k(X_i)\right)$ is also minimal sufficient if the parameter space contains an open set in $\mathbb R^k$.
+	\end{itemize}
+	\item Ancillary statistics
+\begin{itemize}
+	\item Definition: $U(\mathbf{X})$ is ancillary of $\theta$ if the distribution of $U$ does not depend on $\theta$.
+\end{itemize}
+\item Complete statistics
+\begin{itemize}
+	\item Definition: $T(\mathbf{X})$ is complete if $T$ has the property that
+	\begin{align*}
+	\E_\theta g(T)=0 \text{  for any measurable } g \text{ and }\theta \Rightarrow g(T) =0 \text{ a.s.}
+	\end{align*}
+	\item Basu's Theorem: Complete sufficient statistics and ancillary statistics for parameter $\theta$ are independent for all $\theta.$
+\end{itemize}
+\end{itemize}
+
+
+\section{Questions}
+\begin{enumerate}
+		\item Let $(X_1,\ldots, X_n) $ be a random sample from density $\theta^{-1}e^{-(x-\theta)/\theta}I_{(\theta, \infty)}(x)$, where $\theta >0 $ is an unknown parameter.
+		
+
+	\begin{enumerate}
+		\item Find a statistic that is minimal sufficient for $\theta$.
+		\item Show whether the minimal sufficient statistic in (a) is complete.
+	\end{enumerate}
+		\vspace{2cm}
+	\item Let $X$ be a discrete random variable with $$\p_\theta(X = x) = \dfrac{{\theta\choose x}{N-\theta \choose n-x}}{{N \choose n}},\hspace{.2cm}x = 0,1,2,\ldots,\min\{\theta,n\}, n-x \leq N-\theta$$ where $n$ and $N$ are known positive integers, $N\geq n$, and $\theta = 0, 1, \ldots,N$. Show that $X$ is complete.
+
+
+	\vspace{2cm}
+
+	\item\begin{enumerate}
+	\item If $\frac{X}{Y}$ and $Y$ are independent random variables, show that 
+	\begin{align*}
+	\E \left (\frac{X}{Y} \right )^k = \frac{\E(X^k)}{\E(Y^k)}.
+	\end{align*}
+	
+	\item Use Basu's theorem to show that if $X_1, ..., X_n$ are iid gamma$(\alpha,\beta)$, where $\alpha$ is known, then for $T=\sum_{j=1}^{i} X_j$
+	
+	\begin{align*}
+	\E(X_{(i)}|T)=\E \left( \frac{X_{(i)}}{T} T |T   \right) = T \frac{\E(X_{(i)})}{\E T} 
+	\end{align*}
+	
+\end{enumerate} 
+	\vspace{2cm}
+
+
+\item Let $(X_1 , \ldots, X_n)$, $n \geq 2$, be a random sample from a distribution having density $f_{\theta,j}$, where $\theta > 0$, $j = 1, 2$, $f_{\theta,1}$ is the density of $\mathcal N(0, \theta^2 )$, and $f_{\theta,2}(x)=(2\theta)^{-1}e^ {-|x|/\theta}$. Show that $T = (T_1 , T_2 )$ is minimal sufficient for $(\theta, j)$, where $T_1 =\sum_{i=1}^n X_i^2$ and $T_2 = \sum_{i=1}^n |X_i |$.
+\end{enumerate}
+%-------------------------------------%
+\end{document}

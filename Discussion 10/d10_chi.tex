@@ -1,0 +1,104 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} 
+
+%-------------------------------------%
+\begin{document}
+	
+	\begin{center}
+		{\large \bf STAT 610: Discussion 10}
+	\end{center}
+	\vspace{0.22cm}
+%-------------------------------------%
+----------------------------------%
+\section{Summary}
+\begin{itemize}
+    \item Union-Intersection and Intersection Tests (UIT/IUT): 
+    \begin{itemize}
+		\item UIT: Suppose we want to test $H_0: \theta \in \cap_{\gamma\in\Gamma}\Theta_\gamma$ v.s. $H_1: \theta\in \cup_{\gamma\in\Gamma}\Theta_\gamma^c$. Suppose $R_\gamma$ is the rejection region of test $H_0: \theta \in \Theta_\gamma$ v.s. $H_1: \theta\in\Theta_\gamma^c$. Then, UIT is $R = \cup_{\gamma\in\Gamma}R_\gamma$. If $R_\gamma$ is of the form $\{x:T_\gamma(x) > c\}$, then $$R = \cup_{\gamma\in\Gamma}\{x:T_\gamma(x) > c\} = \{x:\sup_{\gamma\in\Gamma}T_\gamma(x) > c\}.$$
+		\item IUT: Suppose we want to test $H_0: \theta \in \cup_{\gamma\in\Gamma}\Theta_\gamma$ v.s. $H_1: \theta\in \cap_{\gamma\in\Gamma}\Theta_\gamma^c$. If each $H_{0\gamma}$ has the rejection region $R_\gamma = \{x:T_\gamma(x) > c\}$, then IUT has the rejection region 
+		$$R = \cap_{\gamma\in\Gamma}\{x:T_\gamma(x) > c\} = \{x:\inf_{\gamma\in\Gamma}T_\gamma(x) > c\}.$$
+		\item Level of UIT: If $R_\gamma$ has level $\alpha_\gamma$, then the overall level of UIT is at most $\sum_{\gamma\in\Gamma}\alpha_\gamma$.
+		\item Level of IUT: If $R_\gamma$ has level $\alpha_\gamma$, then the overall level of IUT is at most $\min_{\gamma\in\Gamma}\alpha_\gamma$.
+		\item Relationship between LRT and UIT: Refer to \textit{Theorem 8.3.21} in the textbook.
+	\end{itemize}
+	\item Confidence Interval:
+	\begin{itemize}
+		\item The \textit{coverage probability} is defined as $\p_\theta(\theta\in[L(\X), U(\X)])$ for an interval $[L(\X), U(\X)]$.
+		\item The \textit{confidence coefficient} is defined as $\inf\p_\theta(\theta\in[L(\X), U(\X)])$, which is the infimum of the coverage probability.
+	\end{itemize}
+	\item Pivotal quantities: A random variable $Q(\X, \theta) = Q(X_1, \ldots, X_n, \theta)$ is a \textit{pivotal quantity} if the distribution of $Q(\X, \theta)$ is independent of all parameters. That is, if $\X\sim F(\x\mid \theta)$, then $Q(\x, \theta)$ has the same distribution for all values of $\theta$.
+\begin{itemize}
+	\item e.g. If $X_i\overset{i.i.d}{\sim}\text{Exp}(\theta)$, then $T = \sum_{i = 1}^nX_i\sim\text{Gamma}(n,\theta)$. Hence $Q(T,\theta) = 2T/\theta\sim \chi_{2n}^2$ is a pivotal quantity.
+	\item After figuring out $a$, $b$ such that $\p(a\leq Q(\X,\theta) \leq a) \geq 1-\alpha$, then $C(\x) = \{\theta: a\leq Q(\x,\theta) \leq b\}$ is a $1 - \alpha$ confidence set for $\theta.$
+	\item If $Q(\x, \theta)$ is a monotone function of $\theta$, then $C(\x)$ will be an interval.
+\end{itemize}
+\item Pivoting a cdf: Let $T$ be a statistic with cdf $F_T(t\mid \theta)$. Let $\alpha_1 + \alpha_2 = \alpha$ be constants.  
+\begin{itemize}
+	\item If $F_T(t\mid \theta)$ is a decreasing function of $\theta$ for each $t$, define $\theta_L(t)$ and $\theta_U(t)$ by  
+	$$F_T(t \mid \theta_U(t)) = \alpha_1, \hspace{1cm} F_T(t \mid \theta_L(t)) = 1-\alpha_2.$$
+	\item If $F_T(t\mid \theta)$ is a increasing function of $\theta$ for each $t$, define $\theta_L(t)$ and $\theta_U(t)$ by  
+	$$F_T(t \mid \theta_U(t)) = 1-\alpha_2, \hspace{1cm} F_T(t \mid \theta_L(t)) = \alpha_1.$$
+	Then $[\theta_L(T),\theta_U(T)]$ is a $1 - \alpha$ confidence interval for $\theta$.
+\end{itemize}
+
+
+\end{itemize}
+
+\section{Questions}
+ 
+\begin{enumerate}
+
+
+	\item Consider testing $H_0: \theta \in \cup_{j = 1}^k\Theta_j$. For each $j = 1,\ldots,k$, let $p_j(\x)$ denote a valid p-value for testing $H_{0j}: \theta\in\Theta_j$. Let $p(\x) = \max_{1\leq j\leq k}p_j(\x)$.
+	\begin{enumerate}
+		\item Show that $p(\X)$ is a valid p-value for testing $H_0$.
+		\item Show that the $\alpha$ level test defined by $p(\X)$ is the same as an $\alpha$ level IUT defined in terms of individual tests based on the $p_j(\x)$s.
+	\end{enumerate}
+	\vspace{8cm}
+	
+	 \item Find a $1 - \alpha$ confidence interval for $\theta$ using pivots, given $X$ with pdf
+	\begin{enumerate}
+		\item $f(x\mid \theta) = 1$, $\theta - \frac{1}{2}<x<\theta + \frac{1}{2}$.
+		\item $f(x\mid \theta) = 2x/\theta^2$, $0<x<\theta$.
+	\end{enumerate}
+	\newpage
+	\item Let $X_1,\ldots, X_n$ be i.i.d uniform$(0, \theta)$. Let $Y$ be the largest order statistic. Prove that $Y/\theta$ is a pivotal quantity and show that $[y, y\cdot\alpha^{-1/n}]$ is the shortest $1 - \alpha$ pivotal interval. 
+	\vspace{4cm}
+	\item If $X_1, \ldots, X_n$ are i.i.d from a location pdf $f(x - \theta)$. Show that the confidence set $$C(x_1,\ldots, x_n) = \{\theta: \bar x - k_1\leq \theta\leq \bar x + k_2\},$$
+where $k_1$, $k_2$ are constants, has constant coverage probability.
+
+	
+	\vspace{4cm}
+		\item Let $X_1,\ldots,X_n$ be a random variable with pdf $f_X(x) = \theta a^\theta x^{-(\theta+1)}I_{(a,\infty)}(x)$, where $\theta>0$ and $a>0$.
+	\begin{enumerate}
+		\item When $\theta$ is known, derive a confidence interval for $a$ with confidence coefficient $1 - \alpha$ by pivoting the cdf of the smallest order statistic $X_{(1)}$.
+		
+		\item When both $a$ and $\theta$ are unknown and $n\geq 2$, derive a confidence interval for $\theta$ with confidence coefficient $1 - \alpha$ by pivoting the cdf of $T = \prod_{i = 1}^{n}(X_i/X_{(1)})$.
+		
+		\textit{Hint: You can use the fact that $2\theta\log T \sim \chi_{2(n-1)}^2$ and then write the cdf of $T$ in terms of the cdf of $\chi_{2(n-1)}^2$.}
+		
+		\item When both $a$ and $\theta$ are unknown, construct a confidence set for $(a, \theta)$ with confidence coefficient $1 - \alpha$ using a pivotal quantity.
+		
+		\textit{Hint: Notice that $X_{(1)}/a$ is free of $a$, and $X_{(1)}^\theta$ is free of $\theta$.}
+	\end{enumerate}
+	
+	
+\end{enumerate}
+%-------------------------------------%
+\end{document}

@@ -1,0 +1,86 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 4}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item  Cram\'er-Rao Lower Bound
+
+Suppose $f_\theta$ is differentiable as a function of $\theta$ and satisfies $$\dfrac{d}{d\theta}\int h(x)f_\theta(x)dx = \int h(x)\dfrac{\partial}{\partial \theta}f_\theta(x)dx$$
+for $h(x) = 1$ and $h(x) = T(x)$. Then,
+\begin{align*}
+\text{Var}_\theta \{T(\mathbf{X}) \}\geq \{\frac{\partial}{\partial\theta}g(\theta)\}^T\{I(\theta)\}^{-1} \{\frac{\partial}{\partial\theta}g(\theta)\},
+\end{align*}where
+\begin{align*}
+I(\theta) = \E\left\{\dfrac{\partial}{\partial \theta}\log f_\theta(X)\left[\dfrac{\partial}{\partial \theta}\log f_\theta(X)\right]^T\right\}.
+\end{align*}
+
+\item An alternative way of calculating Fisher information matrix
+
+(\textbf{Lemma 7.3.11}) If $f_\theta(x)$ satisfies $$\dfrac{d}{d\theta}\E_\theta\left(\dfrac{\partial}{\partial \theta}\log f_\theta(X)\right) = \int \dfrac{\partial}{\partial \theta}\left\{\left(\dfrac{\partial}{\partial \theta}\log f_\theta(X)\right)f_\theta(X)  \right\}$$(true for an expential family), then $$\E_\theta\left\{\left(\dfrac{\partial}{\partial \theta}\log f_\theta(X) \right)^2 \right\} = -\E_\theta\left(\dfrac{\partial^2}{\partial \theta^2}\log f_\theta(X) \right).$$
+\item Uniform Minimum Variance Unbiased Estimator (UMVUE)
+
+	\begin{itemize}
+	
+	
+	
+	
+	\item \textbf{Definition}: $T$ is UMVUE of $g(\theta)$ if $T$ has the smallest variance among all unbiased estimators of $g(\theta)$.
+	\item \textbf{Rao-Blackwell Theorem}: We learned it in Lecture 2.
+	\item \textbf{Theorem 7.3.19}: UMVUE is unique.
+	\item \textbf{Theorem 7.3.20}: $W$ is UMVUE $\Leftrightarrow$ $\E(WU)=0$ for all $U$ satisfying $\E (U)=0$.
+	\item \textbf{Lehmann-Scheff\'e Theorem}: If $T$ is complete sufficient for $\theta$. If $\psi(T)$ is an unbiased estimator of $g(\theta)$, then it is the unique UMVUE.
+ \item There are two way for finding UMVUE.
+ \begin{itemize}
+ 	\item Find $\psi$.
+ 	\item Find an unbias estimator $W$ for $g(\theta)$. Then, calculate $E[W|T]$.
+ \end{itemize}
+\end{itemize}
+
+\end{itemize}
+
+
+\section{Questions}
+\begin{enumerate}
+	\item Let $X_1,\dots,X_n$ be i.i.d. $Ber(p)$. Find the UMVUE of following parametors.
+	\begin{itemize}
+		\item $p^m$, for all $m\leq n.$
+		\item $P(X_1+\cdots+X_m=k)$, where $m$ and $k$ are positive integers $\leq n.$
+		\item Find the UMVUE of $P(X_1+\cdots+X_{n-1} >X_n)$.
+	\end{itemize}
+\vspace{3cm}
+\item Let $X_1,\dots,X_n$ be i.i.d $E(a,\theta)$. Find the UMVUE of following situation.
+\begin{itemize}
+\item Find the UMVUE of $a$ when $\theta$ is known.
+\item Find the UMVUE of $\theta$ when $a$ is known.
+\item Find the UMVUE of $a$ and $\theta$.
+\end{itemize}
+\vspace{3cm}
+ 	\item Suppose that $T$ is a UMVUE of an unknown parameter $\theta$, and for any integer $k>0$, we have $\E(T^k) < \infty$. Show that $T^k$ is a UMVUE of $\E(T^k)$.
+\end{enumerate}
+%-------------------------------------%
+\end{document}

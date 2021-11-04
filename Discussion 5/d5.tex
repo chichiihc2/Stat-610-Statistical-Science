@@ -1,0 +1,71 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small Room 1335K, MSC} \chead{TA: Linquan Ma} \rhead{\small{Office Hour: 7:00-9:00 PM, Wed}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 5}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item
+    
+\end{itemize}
+
+\newpage
+\section{Questions}
+ 
+\begin{enumerate}
+	\item Observations $Y_1,\ldots,Y_n$ are described by the relationship $Y_i = \theta x_i^2 + \epsilon_i$, where $x_1,\ldots,x_n$ are fixed constants and $\epsilon_1,\ldots,\epsilon_n$ are iid $\mathcal N(0,\sigma^2)$.
+	\begin{enumerate}
+		\item Find the least squares estimator of $\theta$.
+		\item Find the MLE of $\theta$.
+		\item Find the UMVUE of $\theta$.
+	\end{enumerate}
+	
+	\vspace{6cm}
+	\item Observations $Y_1,\ldots,Y_n$ are made according to the model $Y_i = \alpha +\beta x_i+\epsilon_i$, where $x_1,\ldots,x_n$ are fixed constants and $\epsilon_1,\ldots,\epsilon_n$ are iid $\mathcal N(0,\sigma^2)$. Let $\hat \alpha$ and $\hat\beta$ denote MLEs of $\alpha$ and $\beta$.
+	\begin{enumerate}
+		\item Assume that $x_1,\ldots,x_n$ are observed values of iid random variables $X_1,\ldots,X_n$ with distribution $\mathcal N(\mu_X,\sigma^2_X)$. Prove that when we take expectations over the joint distribution of $X$ and $Y$, we still get $\mathbb E(\hat\alpha) = \alpha$ and $\mathbb E(\hat\beta) = \beta$.
+		\item Calculate the unconditional covariance of $\hat \alpha$ and $\hat\beta$ using the joint distribution of $(X,Y)$.
+	\end{enumerate}
+	\newpage
+	\item Consider $$Y_{ij} = \mu+\alpha_i+\beta_j+\epsilon_{ij}, \qquad i = 1,\ldots, a; j = 1,\ldots,b,$$
+	where $Y_{ij}$ is the observation, $\mu,\alpha_i,\beta_j$ are unknown parameters, and $\epsilon_{ij}$'s are iid random errors with $\mathbb E(\epsilon_{ij)} = 0$ and $\text{Var}(\epsilon_{ij}) = \sigma^2$.
+	\begin{enumerate}
+		\item Let $Y = (Y_{11}, \ldots, Y_{1b},Y_{21},\ldots,Y_{2b},\ldots,Y_{a1},\ldots,Y_{ab})^T$ and $\theta = (\mu, \alpha_1,\ldots,\alpha_a,\beta_1,\ldots,\beta_b)^T$. Express the data in a linear model $Y = X\theta+\epsilon$ and identify the matrix $X$.
+		\item Obtain an LSE o f$\theta$, although there may be more tha none LSE.
+		\item Find the rank of the matrix $X$.
+		\item Use the rank in the previous part to impose some constraints on $\alpha_i$'s and $\beta_i$'s so that the LSE of $\theta$ is uniquely defined.
+	\end{enumerate}
+	
+	\vspace{8cm}
+	\item Suppose $Y_{n\times 1} = X_{n\times p}\beta_{p\times 1} + \epsilon_{n\times 1}$, where $\epsilon_i\overset{i.i.d}{\sim}\mathcal N(0,\sigma^2)$ is independent of $X_i$, and the design matrix $X_{n\times p}$ is of full rank.
+	\begin{enumerate}
+		\item If $A$ is any arbitrary $p\times n$ matrix such that $AX$ is invertible. Prove that $\tilde \beta = (AX)^{-1}AY$ is a linear unbiased estimator of $\beta$, and $(AX)^{-1}AA^T(X^TA^T)^{-1}\geq (X^TX)^{-1}$.
+		\item If $A$ is any invertible symmetric matrix of size $n$, prove that $\tilde \beta = (X^TAX)^{-1}X^TAY$ is a linear unbiased estimator of $\beta$, and $(X^TAX)^{-1}X^TA^2X(X^TAX)^{-1}\geq (X^TX)^{-1}$.
+	\end{enumerate}
+\end{enumerate}
+%-------------------------------------%
+\end{document}

@@ -1,0 +1,89 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 3}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	   \item Know how to find Method of moments estimate.
+	   \item Know how to find MLE.
+	   \item Know how to find Bayes estimators.
+	   
+	   \begin{itemize}
+	   	\item Risk(MSE): The risk of an estimator $T(X)$ of $g(\theta)$ is athe function of $\theta$ defined by
+	   $$R_T(\theta)=E_\theta[T(X)-g(\theta)]^2.$$
+	   \item Bayes risk: Let $\pi(\theta)$ be a pdf (or pmf) on $\Theta$. The Bayes risk is the averaged MSE
+	   $$r_T=\int_\Theta R_T(\theta)\pi(\theta)d \theta.$$
+	   \item Bayes estimators is the estimators minimize Bayes risk.
+	   
+	   $$T_\pi=\frac{\int g(\theta)f_\theta \pi(\theta)d\theta}{\int f_\theta \pi(\theta)d\theta}=E[g(\theta)|X].$$
+	   \item Sufficient statistics can reduce the calculation of bayes estimator. Let $S$ be the sufficient statistics for $\theta,$ then
+	   $$T_\pi=E[g(\theta)|S].$$
+	   \end{itemize}
+	
+\end{itemize}
+
+
+\section{Questions}
+
+\begin{enumerate}
+	\item Let $X_1, ..., X_n$ be iid with pdf 
+\begin{align*}
+f(x|\theta)=\theta x^{\theta-1}, \: 0 \leq x \leq 1,\: 0<\theta<\infty
+\end{align*}
+\begin{enumerate}
+	\item Find the MLE of $\theta$, and show that its variance $\rightarrow 0$ as $n \rightarrow \infty$.
+	\item Find the method of moments estimator of $\theta$.
+\end{enumerate}
+\vspace{4cm}
+
+
+\item Let $X_1,\dots,X_n$ be i.i.d. binary random variables with $P(X_i=1)=\theta\in(0,1).$ Consider estimating $\theta$ with the squared error loss. Calculate the risks of the following estimators:
+\begin{enumerate}
+	\item $\bar{X}$
+	\item 
+	$$T_0(X)=\left\{ 
+	\begin{aligned}
+	0& \qquad\mbox{if more than half of $X_i$ are 0} \\
+	1&  \qquad \mbox{if more than half of $X_i$ are 1}\\
+	\frac{1}{2}&\qquad\mbox{if exactly half of $X_i$ are 0}\\
+	\end{aligned}
+	\right.$$
+
+\end{enumerate}
+\vspace{4cm}
+
+\item Let $X_1,\dots,X_n$ be i.i.d. $Exp(\theta)$, $\theta\in (0,\infty)$. Calculate the MSE of the sample mean $\bar{X}$ and $cX_{(1)}$ for some contant $c$. Is $\bar{X}$ better than $cX_{(1)}$?
+\vspace{4cm}
+
+\item Let $\bar{X}$ be the sample mean of $n$ i.i.d. observations from $N(\theta,\sigma^2)$ with a known $\sigma>0$, and unknown $\theta\in \mathbb{R}$. Let $\pi$ be a piror p.d.f on $\mathbb{R}$.
+Show that the Bayes estimator of $\theta$, given $\bar{X}=x$, is of the form 
+$$T(x)=x+\frac{\sigma^2}{n}\frac{d \log(x))}{d x}, $$ 
+where $p(x)$ is the marginal p.d.f. of $\bar{X}$.
+\end{enumerate}
+
+%-------------------------------------%
+\end{document}

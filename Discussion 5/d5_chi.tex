@@ -1,0 +1,85 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 5}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item Linear model: $Y=X\beta+\epsilon.$
+	$$MSE: \hat{\beta}=(X^\top X)^{-1}X^\top Y$$
+	$$SSR: \|  Y-X^\top \hat{\beta}\|^2$$ 
+	\item Assumptions
+	\begin{itemize}
+\item [(A1)] $\epsilon\sim N(0,\sigma^2 I_n)$
+\item [(A2)] $E[\epsilon]=0$, $Var(\epsilon)=\sigma^2 I_n$
+\item [(A3)] $E[\epsilon]=0$, $Var(\epsilon)=V$
+	\end{itemize}
+A1 implies A2 implies A3.
+\item A linear models with full rank $X^\top X$ and assumption (A1). 
+\begin{itemize}
+	\item $\beta\sim N(\beta,\sigma^2 (X^\top X)^{-1})$, and $\ell ^\top \beta$ is the UMVUE for $\ell^\top\beta$ for any $\ell\in \mathbb{R}^p.$
+	\item $SSR/\sigma^2\sim \chi_{n-p}$. $SSR/(n-p)$ is the UMVUE for $\sigma^2$
+	\item SSR and $\hat{\beta}$ are independent.
+\end{itemize}
+\item Under assumption (A2), we consider (BLUE).
+\begin{itemize}
+\item For everey $\ell\in \mathbb{R}^p$, the BLUE for $\ell^\top \beta$ is the one has the smallest variance within the following class of linear unbiased estimators
+$$ \{c^\top Y| \quad E [c^\top Y]=\ell^\top \beta  \}.$$
+\item Gauss-Markov Theorem: Given a linear models with full rank $X^\top X$ and assumption (A2).  We have
+$\ell^\top \hat\beta$  is BLUE for $\ell^\top \beta.$
+\end{itemize}
+\item Under assumption (A3), consider weighted least square.
+$$\hat{\beta}_{V^{-1}}=(X^\top V^{-1} X) ^{-1} X^\top V^{-1}Y.$$
+\end{itemize}
+\newpage
+
+\section{Questions}
+\begin{enumerate}
+	\item Suppose that
+	$$Y_{ij}=\alpha_{i}+\beta t_{ij},\qquad i=1,\dots,a, \ j=1,\dots, b.$$
+	\begin{enumerate}
+		\item Express the data in a linear model $Y=X\beta+\epsilon$ and identify $X$.
+		\item In what condition $X$ is full rank?
+		\item Obtain an LSE of $\beta.$
+	\end{enumerate}	
+\vspace{3cm}
+	\item Under linear models and assumption (A1), find the UMVUE's of 
+	\begin{enumerate}
+	\item $(\ell^\top\beta)^2$, 
+	\item $\ell^\top\beta/\sigma$,
+	\item $(\ell^\top\beta/\sigma)^2.$
+	\end{enumerate}  
+	
+	
+		\vspace{3cm}
+	\item Suppose $Y_{n\times 1} = X_{n\times p}\beta_{p\times 1} + \epsilon_{n\times 1}$, where $\epsilon_i\overset{i.i.d}{\sim}\mathcal N(0,\sigma^2)$ is independent of $X_i$, and the design matrix $X_{n\times p}$ is of full rank.
+	\begin{enumerate}
+		\item If $A$ is any arbitrary $p\times n$ matrix such that $AX$ is invertible. Prove that $\tilde \beta = (AX)^{-1}AY$ is a linear unbiased estimator of $\beta$, and $(AX)^{-1}AA^T(X^TA^T)^{-1}\geq (X^TX)^{-1}$.
+		\item If $A$ is any invertible symmetric matrix of size $n$, prove that $\tilde \beta = (X^TAX)^{-1}X^TAY$ is a linear unbiased estimator of $\beta$, and $(X^TAX)^{-1}X^TA^2X(X^TAX)^{-1}\geq (X^TX)^{-1}$.
+	\end{enumerate}
+\end{enumerate}
+%-------------------------------------%
+\end{document}

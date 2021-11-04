@@ -1,0 +1,70 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+\newcommand{\T}{^\mathsf{T}}
+
+\lhead{\small Room 1335K, MSC} \chead{TA: Chi-Shian Dai} 
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 13}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+	\item Asymptotic tests: 
+	\begin{itemize}
+		\item \textbf{LRT statistic}: Let $X_1,\ldots, X_n$ from $f_\theta(x)$. Under regularity conditions in \textsection 10.6.2, if $\theta\in\Theta_0$, then the distribution of the statistic $-2\log\lambda(\X)\sim \chi^2_r$ as $n\rightarrow\infty$, where $r$ is the difference between the dimension of $\theta$ and number of free parameters in $\Theta_0$. 
+		\item Based on the above asymptotic result above, we can construct an asymptotic $\alpha$-level test as $R = \{\X: -2\log\lambda(\X)\geq \chi^2_{r,\alpha}\}$.
+		\item \textbf{Wald test}: Suppose $H_0$ is equivalent to a set of equations $R(\theta) = 0$ where $R$ is a continuous function from $\mathbb R^k\rightarrow \mathbb R^l$. Wald (1943) introduces the following statistic:
+		$$W_n = R(\hat\theta)\T\{c(\hat\theta)\T I_n(\hat\theta)^{-1}c(\hat\theta)\}^{-1}R(\hat\theta),$$
+		where $C(\theta) = \partial R(\theta)/\partial\theta$, $I_n(\hat\theta)$ is the fisher information matrix based on $X_1,\ldots,X_n$ and $\hat\theta$ is the MLE of $\theta$. Then, under regularity conditions, $W_n\xrightarrow{d}\chi^2_r$, where $r$ equals the difference of number of all free parameters and free parameters in $\Theta_0$.
+		\item For testing $H_0:\theta = \theta_0$ with $\theta_0$ known, $R(\theta) = \theta - \theta_0$ and $W_n$ simplifies to $$W_n = (\hat \theta - \theta_0)\T I_n(\hat\theta)(\hat \theta - \theta_0).$$
+		\item \textbf{Score test}: Rao (1947) proposed the following statistic:
+		$$R_n = s_n(\hat\theta_0)\T I_n(\hat\theta_0)^{-1}s_n(\hat\theta_0),$$
+		where $\hat\theta_0$ is the MLE under $H_0$ and $s_n(\theta) = \partial\log f_\theta(x)/\partial\theta$ is called the score function. Under regularity conditions, $W_n\xrightarrow{d}\chi^2_r$.
+		\item LRT, Wald test and score test are asymptotic equivalent.
+	\end{itemize}
+	\item Asymptotic confidence sets: 
+	\begin{itemize}
+		\item \textbf{Asymptotic pivots}: A known function $q_n(\X, \theta)$ is a \textit{Asymptotic pivot} if the asymptotic distribution of $q_n(\X, \theta)$ is free of the unknown parameter $\theta$.
+		\item We can also obtain asymptotic confidence sets by inverting asymptotic tests.
+	\end{itemize}
+\end{itemize}
+
+\section{Questions}
+ 
+\begin{enumerate}
+	\item Let $X_1,\ldots,X_n$ be i.i.d. samples from $\mathcal N(\mu,\sigma^2)$. Derive a score test statistic for testing $H_0: \sigma = \sigma_0$ if $\mu$ is known. 
+	\newpage
+	\item Let $X_1,\ldots,X_n$ be a random sample from $\N(\mu, \varphi)$ with unknown $\theta = (\mu,\varphi)$. Obtain $1-\alpha$ asymptotically correct confidence sets for $\mu$ by inverting acceptance regions of LR tests, Wald's tests and score test.
+	\vskip 9cm
+	\item Let $X_1,\ldots, X_n$ be i.i.d. negative binomial$(r,p)$. Consider $Y = \sum_{i=1}^nX_i\sim$nb$(nr,p)$.
+	\begin{enumerate}
+		\item Prove that $2pY\xrightarrow{d}\chi_{2nr}^2$ as $p\rightarrow 0$.
+		\item Show that for small $p$, the interval 
+		$$\left\{p: \dfrac{\chi_{2nr, 1-\alpha/2}^2}{2Y}\leq p\leq \dfrac{\chi_{2nr, \alpha/2}^2}{2Y}\right\}$$ is an approximate $1-\alpha$ confidence interval.
+		\item Obtain a minimum length $1-\alpha$ CI based on the asymptotic pivot $2pY$.
+	\end{enumerate}
+	\textit{Hint: mgf of $\chi^2_{r}$ is $(1 - 2t)^{-k/2}$ for $t < \frac{1}{2}$, and mgf of nb$(r,p)$ is $[\frac{p}{1-(1-p)e^t}]^r$ for $t<\log(1-p)$.}
+\end{enumerate}
+%-------------------------------------%
+\end{document}

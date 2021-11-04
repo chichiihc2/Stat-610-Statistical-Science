@@ -1,0 +1,82 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\x}{\mathbf x}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} 
+
+%-------------------------------------%
+\begin{document}
+	
+	\begin{center}
+		{\large \bf STAT 610: Discussion 11}
+	\end{center}
+	\vspace{0.22cm}
+%-------------------------------------%
+----------------------------------%
+
+
+  
+
+\section{Summary}
+\begin{itemize}
+	\item If we have a pivot $Q(X,\theta)$, a $1-\alpha$ confidence interval involves finding $a$ and $b$ so that $\p(a<Q<b) = 1-\alpha$. Typically, the length of the interval on $\theta$ will be some function of $a$ and $b$ like $b-a$ or $1/a^2 - 1/b^2$. If $Q$ has density $f$ and the length can be expressed as $\int_a^bg(t)dt$, the shortest pivotal interval is the solution of 
+	$$\min_{C}\int_C g(t)dt \hspace{3mm} \text{subject to}  \hspace{3mm} \int_C f(t)dt = 1-\alpha.$$
+	Then, the solution of the above constraint optimization problem is $C = \{t: g(t)<\lambda f(t)\}$, where $\lambda$ is chosen so that $\int_C f(t)dt = 1-\alpha$.
+	\item UMA confidence set: A $1 - \alpha$ set is \textit{uniformly most accurate} (UMA) if it minimizes the probability of false coverage over a class of $1-\alpha$ confidence sets.
+	\begin{itemize}
+		\item UMA confidence sets are constructed by inverting the acceptance region of UMP tests.
+	\end{itemize}
+\end{itemize}
+
+\section{Questions}
+ 
+\begin{enumerate}
+
+	
+	\item Let $X_1,\ldots, X_n$ be i.i.d Exp($\theta$). 
+	\begin{enumerate}
+		\item Find a UMP size $\alpha$ hypothesis test of $H_0: \theta = \theta_0$ v.s. $H_1: \theta < \theta_0$.
+		\item Find a UMA $1 - \alpha$ confidence interval based on inverting the test in part (a). Show that the interval can be expressed as $$C^*(x_1,\ldots, x_n) = \Bigg\{\theta: 0\leq \theta\leq \dfrac{\sum x_i}{G_{n,\alpha}}\Bigg\},$$
+		where $G_{n,\alpha}$ is $\alpha$ quantile of $Gamma(n,1).$
+		\item Find the expected length of $C^*(x_1,\ldots, x_n)$.
+	\end{enumerate}
+
+	\vspace{6cm}
+	
+	\item Let $X_1,\dots,X_n$ be i.i.d. from the distribution $E(\theta,\theta)$, where $\theta>0$ is unknown.
+	\begin{enumerate}
+	\item Show that both $\bar{X}/\theta$, and $X_{(1)}/\theta$ are pivotal quantities.
+	\item  Find the 1-$\alpha$ confidence intervals based on these two pivotal quantities.
+	\item Which one is better?
+	\end{enumerate}
+\vspace{8cm}
+
+\item \textit{(Cox's Paradox)} We are to test $$H_0:\theta = \theta_0\hspace{3mm}\text{versus}\hspace{3mm} H_1:\theta>\theta_0,$$
+where we observe $X$ with distribution 
+$$X\sim \begin{cases}
+\mathcal N(\theta,100),& \text{with probability } p\\
+\mathcal N(\theta, 1),              & \text{with probability } 1-p.
+\end{cases}$$
+\begin{enumerate}
+	\item Show that the test given by \[\text{reject }H_0 \text{ if }X>\theta_0+z_\alpha\sigma, \]
+	where $\sigma = 1$ or 10 depending on which population is sampled, is a level $\alpha$ test.
+	\item Show that the following test of size $\alpha$ is given by 
+	\[\text{reject }H_0 \text{ if }X>\theta_0+z_{(\alpha-p)/(1-p)} \text{ and }\sigma=1;\text{ otherwise always reject} H_0.\]
+	Derive a $1-\alpha$ confidence set by inverting the acceptance region of this test, and show that it is the empty set with positive probability.
+\end{enumerate}
+\end{enumerate}
+%-------------------------------------%
+\end{document}

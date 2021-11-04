@@ -1,0 +1,101 @@
+\documentclass[12pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts, bm}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage[hmargin={0.8in, 0.8in}, vmargin={1.0in, 1.0in}]{geometry}
+\thispagestyle{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\newcommand{\p}{\mathbb P}
+\newcommand{\X}{\mathbf X}
+\newcommand{\E}{\mathbb E}
+\newcommand{\N}{\mathcal N}
+
+\lhead{\small cdai39@wisc.edu} \chead{TA: Chi-Shian Dai} \rhead{\small{Office Hour: 1:30-3:30 PM, Th}}
+
+%-------------------------------------%
+\begin{document}
+
+\begin{center}
+{\large \bf STAT 610: Discussion 1}
+\end{center}
+\vspace{0.22cm}
+
+%-------------------------------------%
+\section{Summary}
+\begin{itemize}
+
+		\item Order statistic: Let $X_1, ..., X_n$ be i.i.d sample and $X_{(1)}, ..., X_{(n)}$ as order statistics, then
+	\begin{align*}
+	F_{X_{(j)}}(x)=\sum_{k=j}^{n} \binom{n}{k}\{F_X(x)\}^k\{1-F_X(x)\}^{n-k}.
+	\end{align*}
+	\vspace{-8mm}
+	\begin{align*}
+	f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}f_X(x) \{F_X(x)\}^{j-1}\{1-F_X(x)\}^{n-j}.
+	\end{align*}
+	\vspace{-8mm}
+	\begin{align*}
+	f_{X_{(i)},X_{(j)}}(u,v) = \dfrac{n!}{(i-1)!(j-1-i)!(n-j)!}f_X(u)f_X(v)\{F_X(u)\}^{i-1}\\ \times\{F_X(v) - F_X(u)\}^{j-1-i}\{1 - F_X(v)\}^{n-j}I(u<v).
+	\end{align*}
+	\vspace{-8mm}
+	\begin{align*}
+	f_{X_{(1)},\ldots X_{(n)}}(x_1,\ldots x_n) = 
+	\begin{cases}
+	n!f_X(x_1)\cdots f_X(x_n) & \text{if} \ -\infty < x_1 < \cdots < x_n < \infty,\\
+	0 & \text{otherwise.}
+	\end{cases}	
+	\end{align*}
+
+
+	\item Sufficient statistics
+	\begin{itemize}
+		\item Definition: A statistic $T(\X)$ is sufficient for $\bm\theta$ if the conditional distribution of the sample $\X$ given the value of $T(\X)$ does not depend on $\bm\theta$.
+		\item Factorization Theorem: $T(\mathbf{X})$ is sufficient for $\bm\theta$ if and only if 
+		\begin{align*}
+		f(\mathbf{x}|\bm\theta)=g(T(\mathbf{x})|\bm\theta)h(\mathbf{x}).
+		\end{align*}
+	\end{itemize}
+	
+	
+	\item Rao-Blackwell Theorem: 
+	Let $X$ be a sample from a population indexed by $\theta\in \mathbb{\theta}$ and
+	statistic $T(\X)$ is sufficient for $\theta$. If $U(X)$ is a statistic used to estimate $\vartheta=\phi(\theta)$, and $E_\theta[U(X)-\vartheta]^2<\infty$, then the statistics $h(T)=E[U(X)|T]$ satisfies 
+	$$E_\theta[h(T)-\vartheta]^2<E_\theta[U(X)-\vartheta]^2\qquad\theta\in \mathbb{\theta}$$
+and $$E_\theta[h(T)-\vartheta]^2=E_\theta[U(X)-\vartheta]^2\qquad\theta\in \mathbb{\theta}$$
+	if and only if $P_\theta(U(X)=h(T))=1,$ $\theta\in \mathbb{\theta}$.
+	\begin{itemize}
+		\item Sufficiency make sure $h$ is a statistics.
+	\end{itemize}
+\end{itemize}
+
+
+\section{Questions}
+
+\begin{enumerate}
+	\item Let $X_1, ..., X_n$ be a random sample from a population with pdf 
+	\begin{align*}
+	f_X(x)=\begin{cases}
+	\frac{1}{\theta}& \text{ if $0<x<\theta$ } \\ 
+	0& \text{ otherwise.} 
+	\end{cases} 
+	\end{align*}
+	Let $X_{(1)}< ...< X_{(n)}$ be the order statistics. Show that $\frac{X_{(1)}}{X_{(n)}}$ and $X_{(n)}$ are independent.
+	\vspace{4cm}
+
+	\item Show that if $T$ is sufficient statistic and $T=\phi(S)$, where $\phi$ is a  real function and $S$ is another statistic, then $S$ is sufficient.	\vspace{3cm}
+	\item Let $X_1 \dots, X_n$ be i.i.d. random variables from the exponential distribution $E(a,\theta)$( i.e. $f_{a, \theta}(x)=\theta^{-1}e^{-(x-a)/\theta} I_{x>a}$ ). Find a two-dimensional sufficient statistics for $(a,\theta)$
+	\vspace{3cm}
+	\item Let $X$ and $Y$ be two random variables such that $Y$ has the binomial distribution with size $N$ and probability $\pi$ and, given $Y = y$, $X$ has the binomial distribution with size $y$ and probability $p$.
+	\begin{enumerate}
+		\item Suppose that $\pi$ and $N$ are known and $p \in (0, 1)$ is unknown. Show whether $X$ is sufficient for $p$ and whether $Y$ is sufficient for $p$.
+	\end{enumerate}
+	
+
+\end{enumerate}
+ 
+%-------------------------------------%
+\end{document}
